@@ -52,7 +52,7 @@ const IndexSetups = (props) => {
                 {/* <Card.Header className='header-name'>{setup.name}</Card.Header> */}
                 <Card.Body className="card-body d-flex flex-column justify-content-end">
 
-                    <p><img src={setup.img}></img></p>
+                        <img src={setup.img}></img>
 
                     <Card.Text className="card-text">
                         <p className="header-name">{setup.title}</p>
