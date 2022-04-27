@@ -8,6 +8,7 @@ import AutoDismissAlert from './components/shared/AutoDismissAlert/AutoDismissAl
 import Header from './components/shared/Header'
 import RequireAuth from './components/shared/RequireAuth'
 import Home from './components/Home'
+import IndexSetups from './components/setup/IndexSetups'
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
@@ -45,6 +46,7 @@ const App = () => {
 				<Header user={user} />
 				<Routes>
 					<Route path='/' element={<Home msgAlert={msgAlert} user={user} />} />
+					<Route path='/setups' element={<IndexSetups msgAlert={msgAlert} />} />
 					<Route
 						path='/sign-up'
 						element={<SignUp msgAlert={msgAlert} setUser={setUser} />}
