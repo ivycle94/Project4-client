@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getAllSetups } from '../../api/setup'
-import { Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 // add message handling
 
@@ -13,7 +13,7 @@ const cardContainerLayout = {
 const IndexSetups = (props) => {
 
     const [setups, setSetups] = useState(null)
-    const { msgAlert } = props
+    // const { msgAlert } = props
 
     useEffect(() => {
         getAllSetups()
@@ -52,7 +52,7 @@ const IndexSetups = (props) => {
                 {/* <Card.Header className='header-name'>{setup.name}</Card.Header> */}
                 <Card.Body className="card-body d-flex flex-column justify-content-end">
 
-                        <img src={setup.img}></img>
+                        <img src={setup.img} alt="setup"/>
 
                     <Card.Text className="card-text">
                         <p className="header-name">{setup.title}</p>
@@ -70,7 +70,7 @@ const IndexSetups = (props) => {
             <h3>All the Setups</h3>
             <div style={cardContainerLayout}>
                 {setupCards}
-            <a href="#top"><Button variant='dark'>Back to Top of Page</Button></a>
+            {/* <a href="#top"><Button variant='dark'>Back to Top of Page</Button></a> */}
             </div>
         </>
     )

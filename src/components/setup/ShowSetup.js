@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { getOneSetup } from '../../api/setup'
-import { useParams, useNavigate } from 'react-router-dom'
-import { Spinner, Container, Card, Button, Form } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import { Spinner, Container, Card } from 'react-bootstrap'
 // import favorite creation
 // import msg handling later
 // import edit modal later
@@ -12,7 +12,7 @@ const ShowSetup = (props) => {
     const [setup, setSetup] = useState(null)
     // const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
-    const { user, msgAlert } = props
+    // const { user, msgAlert } = props
     const { id } = useParams()
     // let { id } = useParams()
     // const navigate = useNavigate()
@@ -39,27 +39,27 @@ const ShowSetup = (props) => {
             })
     }, [updated])
 
-    const removeTheSetup = () => {
-    //     console.log("removeTheSetup id", setup.id)
-    //     console.log("removeTheSetup _id", setup._id)
-    //     // if (setup.visitors.length)
-    //     removeSetup(user, setup.id)
-    //         .then(() => {
-    //             msgAlert({
-    //                 // heading: 'The setup has been removed!',
-    //                 // message: removeSetupSuccess,
-    //                 // variant: 'success',
-    //             })
-    //         })
-    //         .then(() => { navigate(`/setups`) })
-    //         .catch(() => {
-    //             // msgAlert({
-    //             //     heading: 'Setup deletion failed.',
-    //             //     message: removeSetupFailure,
-    //             //     variant: 'danger',
-    //             // })
-    //         })
-    }
+    // const removeTheSetup = () => {
+    // //     console.log("removeTheSetup id", setup.id)
+    // //     console.log("removeTheSetup _id", setup._id)
+    // //     // if (setup.visitors.length)
+    // //     removeSetup(user, setup.id)
+    // //         .then(() => {
+    // //             msgAlert({
+    // //                 // heading: 'The setup has been removed!',
+    // //                 // message: removeSetupSuccess,
+    // //                 // variant: 'success',
+    // //             })
+    // //         })
+    // //         .then(() => { navigate(`/setups`) })
+    // //         .catch(() => {
+    // //             // msgAlert({
+    // //             //     heading: 'Setup deletion failed.',
+    // //             //     message: removeSetupFailure,
+    // //             //     variant: 'danger',
+    // //             // })
+    // //         })
+    // }
 
     if (!setup) {
         return (
@@ -76,7 +76,7 @@ const ShowSetup = (props) => {
                 <Card>
                     <Card.Header className='card-title'><h2>{setup.title}</h2></Card.Header>
                     <Card.Body className="d-flex justify-content-start">
-                        <img className="show-image" src={setup.img}></img>
+                        <img className="show-image" src={setup.img} alt="setup"/>
                         <Card.Text className="show-description">
                             <small><b>Description:</b><br/> {setup.description}</small><br />
                             <p></p>
