@@ -56,7 +56,7 @@ const IndexSetups = (props) => {
 
                     <Card.Text className="card-text">
                         <p className="header-name">{setup.title}</p>
-                        <Link to={`/setups/${setup.id}`}> 
+                        <Link to={`/setups/${setup._id}`}> 
                             View
                         </Link>
                     </Card.Text>
