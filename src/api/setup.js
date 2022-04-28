@@ -30,7 +30,7 @@ export const updateSetup = (user, updatedSetup) => {
     console.log('user', user)
     console.log('this is updatedSetup', updatedSetup)
     return axios({
-        url: `${apiUrl}/setups/${updatedSetup.id}`,
+        url: `${apiUrl}/setups/${updatedSetup._id}`,
         method: 'PATCH',
         headers: {
             Authorization: `Token token=${user.token}`

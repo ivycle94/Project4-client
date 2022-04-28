@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import { getOneSetup, updateSetup, removeSetup } from '../../api/setup'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Spinner, Container, Card, Button, Form } from 'react-bootstrap'
+import EditSetupModal from './EditSetupModal'
 // import favorite creation
 // import msg handling later
-// import edit modal later
 
 const ShowSetup = (props) => {
 
@@ -14,7 +14,6 @@ const ShowSetup = (props) => {
     const [updated, setUpdated] = useState(false)
     const { user, msgAlert } = props
     const { id } = useParams()
-    // let { id } = useParams()
     const navigate = useNavigate()
 
     console.log('id in showSetup', id)
@@ -22,7 +21,9 @@ const ShowSetup = (props) => {
     // empty dependency array in useEffect to act like component did mount
     useEffect(() => {
         getOneSetup(id)
-            .then(res => setSetup(res.data.setup))
+            .then(res => 
+                setSetup(res.data.setup)
+            )
             .then(() => {
                 // msgAlert({
                 //     heading: 'The setup has been retrieved!',
@@ -111,6 +112,15 @@ const ShowSetup = (props) => {
                     </Card.Footer>
                 </Card>
             </Container>
+            <EditSetupModal
+                setup={setup}
+                show={modalOpen}
+                user={user}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                updateSetup={updateSetup}
+                handleClose={() => setModalOpen(false)}
+            />
         </>
     )
 }
