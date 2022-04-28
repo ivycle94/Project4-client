@@ -14,6 +14,9 @@ const authenticatedOptions = (
 			</Link>
 		</Nav.Item>
 		<Nav.Item>
+		    <Link to='setups' style={linkStyle}>Setups</Link>
+        </Nav.Item>
+		<Nav.Item>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>

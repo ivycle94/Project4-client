@@ -79,7 +79,6 @@ const ShowSetup = (props) => {
                         <img className="show-image" src={setup.img} alt="setup"/>
                         <Card.Text className="show-description">
                             <small><b>Description:</b><br/> {setup.description}</small><br />
-                            <p></p>
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer className="show-footer">

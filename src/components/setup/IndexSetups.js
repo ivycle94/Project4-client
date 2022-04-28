@@ -37,7 +37,7 @@ const IndexSetups = (props) => {
                 // })
             })
     }, [])
-
+    
     if (!setups) {
         return <p>Loading ...</p>
     } else if (setups.length === 0) {
@@ -70,7 +70,6 @@ const IndexSetups = (props) => {
             <h3>All the Setups</h3>
             <div style={cardContainerLayout}>
                 {setupCards}
-            {/* <a href="#top"><Button variant='dark'>Back to Top of Page</Button></a> */}
             </div>
         </>
     )

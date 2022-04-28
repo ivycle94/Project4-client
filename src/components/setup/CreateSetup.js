@@ -6,12 +6,13 @@ import SetupForm from '../shared/SetupForm'
 
 const CreateSetup = (props) => {
     const { user, msgAlert } = props
-    console.log('user in create', user)
+    // console.log('user in create', user)
     const navigate = useNavigate()
 
     // we'll need two states
     const [setup, setSetup] = useState({
-        title: '', description: '', img: '', tags: ''
+        title: '', description: '', img: ''
+        // , tags: []
     })
 
     // console.log('In create setup', setup)
@@ -26,17 +27,6 @@ const CreateSetup = (props) => {
             let value = e.target.value
 
             console.log('etarget type', e.target.type)
-            console.log('this is e.target checked', e.target.checked)
-
-            if (name === "visited" && e.target.checked) {
-                value = true
-            } else if (name === "visited" && !e.target.checked) {
-                value = false
-            }
-
-            if (e.target.type === 'number') {
-                value = parseInt(e.target.value)
-            }
 
             const updatedValue = { [name]: value }
 
@@ -68,7 +58,7 @@ const CreateSetup = (props) => {
                     // message: createSetupFailure,
                     // variant: 'danger',
                 }))
-        // console.log('this is the setup', setup)
+        console.log('this is the setup created', setup)
     }
 
     return (
