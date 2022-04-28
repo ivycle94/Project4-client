@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { getOneSetup, updateSetup, removeSetup } from '../../api/setup'
-import { useParams } from 'react-router-dom'
-import { Spinner, Container, Card } from 'react-bootstrap'
+import { useParams, useNavigate } from 'react-router-dom'
+import { Spinner, Container, Card, Button, Form } from 'react-bootstrap'
 // import favorite creation
 // import msg handling later
 // import edit modal later
@@ -10,12 +10,12 @@ import { Spinner, Container, Card } from 'react-bootstrap'
 const ShowSetup = (props) => {
 
     const [setup, setSetup] = useState(null)
-    // const [modalOpen, setModalOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
-    // const { user, msgAlert } = props
+    const { user, msgAlert } = props
     const { id } = useParams()
     // let { id } = useParams()
-    // const navigate = useNavigate()
+    const navigate = useNavigate()
 
     console.log('id in showSetup', id)
 
@@ -43,7 +43,7 @@ const ShowSetup = (props) => {
         console.log("removeTheSetup id", setup.id)
         console.log("removeTheSetup _id", setup._id)
         // if (setup.visitors.length)
-        removeSetup(user, setup.id)
+        removeSetup(user, setup._id)
             .then(() => {
                 msgAlert({
                     // heading: 'The setup has been removed!',
@@ -79,42 +79,35 @@ const ShowSetup = (props) => {
                         <img className="show-image" src={setup.img} alt="setup"/>
                         <Card.Text className="show-description">
                             <small><b>Description:</b><br/> {setup.description}</small><br />
+                            {/* <small><b>Tags:</b><br/> {setup.tags.text}</small><br /> */}
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer className="show-footer">
-                        {/* <a href="javascript:history.back()"><Button className="show-buttons" variant='dark'>Back</Button></a>
-                        {
-                            place.owner && user && (user._id === place.owner._id)
-                                ?
+                        <a href="javascript:history.back()"><Button className="show-buttons" variant='dark'>Back</Button></a>
+                         {/* Trying to set a condtional where only the USER who is the OWNER of the setup can edit/delete the setup */}
+                        {/* {
+                            setup.owner && user && (user._id === setup.owner.id)  ?
                                 <>
                                     <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
-                                        Edit Place
+                                        Edit Setup
+                                    </Button>
+                                    <Button onClick={() => removeTheSetup()} className="m-2" variant="danger">
+                                        Delete Setup
                                     </Button>
                                 </>
-
                                 :
-
                                 null
-
                         }
-
                         {
-                            user
-                                ?
-                                <>
-                                    <Link to={`/visit/${id}`}>
-                                        <Button className='btn btn-dark'>Visited!</Button>
-                                    </Link>
-                                </>
-
-                                :
-
-                                <>
-                                    <Link to={`/sign-in`}>
-                                        <Button className='show-buttons btn btn-dark'>Visited!</Button>
-                                    </Link>
-                                </>
+                            user ? null : null
                         } */}
+
+                        <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
+                            Edit Setup
+                        </Button>
+                        <Button onClick={() => removeTheSetup()} className="m-2" variant="danger">
+                            Delete Setup
+                        </Button>
                     </Card.Footer>
                 </Card>
             </Container>

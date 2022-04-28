@@ -32,13 +32,13 @@ const SetupForm = (props) => {
                     name='description'
                     onChange={handleChange}
                 />
-                {/* <Form.Label>Tags</Form.Label>
+                <Form.Label>Tags</Form.Label>
                 <Form.Control
                     setupholder="Tags"
                     value={setup.tags}
                     name='tags'
                     onChange={handleChange}
-                /> */}
+                />
                 <Button className="show-buttons" type='submit'>Submit</Button>
                 {/* <a href=""><Button className="show-buttons" variant='dark'>Back</Button></a> */}
             </Form>
