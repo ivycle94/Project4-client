@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import { Link } from 'react-router-dom'
-import { getOneSetup } from '../../api/setup'
+import { getOneSetup, updateSetup, removeSetup } from '../../api/setup'
 import { useParams } from 'react-router-dom'
 import { Spinner, Container, Card } from 'react-bootstrap'
 // import favorite creation
@@ -39,27 +39,27 @@ const ShowSetup = (props) => {
             })
     }, [updated])
 
-    // const removeTheSetup = () => {
-    // //     console.log("removeTheSetup id", setup.id)
-    // //     console.log("removeTheSetup _id", setup._id)
-    // //     // if (setup.visitors.length)
-    // //     removeSetup(user, setup.id)
-    // //         .then(() => {
-    // //             msgAlert({
-    // //                 // heading: 'The setup has been removed!',
-    // //                 // message: removeSetupSuccess,
-    // //                 // variant: 'success',
-    // //             })
-    // //         })
-    // //         .then(() => { navigate(`/setups`) })
-    // //         .catch(() => {
-    // //             // msgAlert({
-    // //             //     heading: 'Setup deletion failed.',
-    // //             //     message: removeSetupFailure,
-    // //             //     variant: 'danger',
-    // //             // })
-    // //         })
-    // }
+    const removeTheSetup = () => {
+        console.log("removeTheSetup id", setup.id)
+        console.log("removeTheSetup _id", setup._id)
+        // if (setup.visitors.length)
+        removeSetup(user, setup.id)
+            .then(() => {
+                msgAlert({
+                    // heading: 'The setup has been removed!',
+                    // message: removeSetupSuccess,
+                    // variant: 'success',
+                })
+            })
+            .then(() => { navigate(`/setups`) })
+            .catch(() => {
+                // msgAlert({
+                //     heading: 'Setup deletion failed.',
+                //     message: removeSetupFailure,
+                //     variant: 'danger',
+                // })
+            })
+    }
 
     if (!setup) {
         return (
