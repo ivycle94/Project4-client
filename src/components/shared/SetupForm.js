@@ -13,28 +13,28 @@ const SetupForm = (props) => {
             <Form onSubmit={handleSubmit}>
                 <Form.Label className="spooky-setups-header">Title</Form.Label>
                 <Form.Control
-                    setupholder="Title"
+                    placeholder="Title"
                     value={setup.title}
                     name='title'
                     onChange={handleChange}
                 />
                 <Form.Label>Image</Form.Label>
                 <Form.Control
-                    setupholder="Image url/jpeg"
+                    placeholder="Image url/jpeg"
                     value={setup.img}
                     name='img'
                     onChange={handleChange}
                 />
                 <Form.Label>Description</Form.Label>
                 <Form.Control
-                    setupholder="Description"
+                    placeholder="Description"
                     value={setup.description}
                     name='description'
                     onChange={handleChange}
                 />
                 {/* <Form.Label>Tags</Form.Label>
                 <Form.Control
-                    setupholder="Tags"
+                    placeholder="Tags"
                     value={setup.tags}
                     name='tags'
                     onChange={handleChange}

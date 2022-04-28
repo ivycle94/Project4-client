@@ -1,15 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getOneSetup, updateSetup, removeSetup } from '../../api/setup'
+// import { postComment } from '../../api/comment'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Spinner, Container, Card, Button, Form } from 'react-bootstrap'
 import EditSetupModal from './EditSetupModal'
+import PostComment from '../comment/PostComment'
+// import CommentForm from '../shared/CommentForm'
 // import favorite creation
 // import msg handling later
 
 const ShowSetup = (props) => {
 
     const [setup, setSetup] = useState(null)
+    /////////////////////////////////////////////
+    // trying to add comments
+
+    // const [comment, setComment] = useState({
+    //     note: []
+    // })
+    // const [commBox, setcommBox] = useState(false)
+    
+    /////////////////////////////////////////////
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
     const { user, msgAlert } = props
@@ -61,7 +73,34 @@ const ShowSetup = (props) => {
                 // })
             })
     }
+    /////////////////////////////////////////////
 
+    // const commentChange = (e) => {
+        
+    //     // e === event
+    //     e.persist()
+
+    //     setComment(prevComment => {
+
+    //         const name = e.target.name
+    //         let value = e.target.value
+    //         console.log('etarget type', e.target.type)
+
+    //         const updatedValue = { [name]: value }
+
+    //         console.log('prevComment', prevComment)
+    //         console.log('updatedValue', updatedValue)
+
+    //         return { ...prevComment, ...updatedValue }
+    //     })
+    // }
+    // function showComments(){
+    //     if (setup.comments.length >= 1){
+    //         return ( <p>{setup.comment.note}</p> )
+    //     }
+    // }
+
+    /////////////////////////////////////////////
     if (!setup) {
         return (
             <Container fluid className="justify-content-center">
@@ -109,8 +148,14 @@ const ShowSetup = (props) => {
                         <Button onClick={() => removeTheSetup()} className="m-2" variant="danger">
                             Delete Setup
                         </Button>
+                        {/* ///////////////////////////////////////////// */}
+                        {/* <Button onClick={() => setcommBox(true)} className="m-2" variant="danger">
+                            Comment
+                        </Button> */}
+                        {/* ///////////////////////////////////////////// */}
                     </Card.Footer>
                 </Card>
+                {/* <ShowComments/> */}
             </Container>
             <EditSetupModal
                 setup={setup}
@@ -121,6 +166,9 @@ const ShowSetup = (props) => {
                 updateSetup={updateSetup}
                 handleClose={() => setModalOpen(false)}
             />
+            {/* ///////////////////////////////////////////// */}
+            <PostComment user={user} setup={setup} msgAlert={msgAlert}/>
+            {/* ///////////////////////////////////////////// */}
         </>
     )
 }

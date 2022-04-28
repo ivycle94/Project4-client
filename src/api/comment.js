@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // POST -> create function
 export const postComment = (user, setupId, newComment) => {
+    console.log('this is newComment that was created:\n', newComment)
     return axios({
         url: `${apiUrl}/comments/${setupId}`,
         method: 'POST',
@@ -15,18 +16,18 @@ export const postComment = (user, setupId, newComment) => {
 }
 
 // PATCH -> update function
-export const updateSetup = (user, setupId, comId) => {
-    console.log('user', user)
-    console.log('this is updated comment', updatedComment)
-    return axios({
-        url: `${apiUrl}/comments/${setupId}/${comId}`,
-        method: 'PATCH',
-        headers: {
-            Authorization: `Token token=${user.token}`
-        },
-        data: { comment: updatedComment }
-    })
-}
+// export const updateSetup = (user, setupId, comId) => {
+//     console.log('user', user)
+//     console.log('this is updated comment', updatedComment)
+//     return axios({
+//         url: `${apiUrl}/comments/${setupId}/${comId}`,
+//         method: 'PATCH',
+//         headers: {
+//             Authorization: `Token token=${user.token}`
+//         },
+//         data: { comment: updatedComment }
+//     })
+// }
 
 // DELETE -> remove function
 export const removeComment = (user, setupId, comId) => {
