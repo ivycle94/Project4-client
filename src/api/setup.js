@@ -24,3 +24,29 @@ export const createSetup = (user, newSetup) => {
         data: { setup: newSetup }
     })
 }
+
+// PATCH -> update function
+export const updateSetup = (user, updatedSetup) => {
+    console.log('user', user)
+    console.log('this is updatedSetup', updatedSetup)
+    return axios({
+        url: `${apiUrl}/setups/${updatedSetup.id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { setup: updatedSetup }
+    })
+}
+
+// DELETE -> remove function
+export const removeSetup = (user, setupId) => {
+    console.log('user', user)
+    return axios({
+        url: `${apiUrl}/setups/${setupId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
