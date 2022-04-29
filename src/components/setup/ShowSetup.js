@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getOneSetup, updateSetup, removeSetup } from '../../api/setup'
-// import { postComment } from '../../api/comment'
+import { removeComment } from '../../api/comment'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Spinner, Container, Card, Button, Form } from 'react-bootstrap'
 import EditSetupModal from './EditSetupModal'
@@ -28,7 +28,10 @@ const ShowSetup = (props) => {
     const { id } = useParams()
     const navigate = useNavigate()
 
-    console.log('id in showSetup', id)
+    // console.log('id in showSetup', id)
+    console.log('props in show page\n', props)
+    console.log('props in show page\n', props)
+
 
     // empty dependency array in useEffect to act like component did mount
     useEffect(() => {
@@ -73,8 +76,14 @@ const ShowSetup = (props) => {
                 // })
             })
     }
-    /////////////////////////////////////////////
 
+    const trashCode = () => {
+    /////////////////////////////////////////////
+    //============================================//
+    // COMMENTS -> WORK IN PROGRESS         
+    //============================================//
+
+    //--- COMMENT CHANGE FUNCTION? -----------------------------//
     // const commentChange = (e) => {
         
     //     // e === event
@@ -94,12 +103,13 @@ const ShowSetup = (props) => {
     //         return { ...prevComment, ...updatedValue }
     //     })
     // }
+    //--- COMMENT DISPLAY FUNCTION? -----------------------------//
     // function showComments(){
     //     if (setup.comments.length >= 1){
     //         return ( <p>{setup.comment.note}</p> )
     //     }
     // }
-
+    //--- MAPPING THROUGH COMMENTS -----------------------------//
     // let commCards
 
     // if (setup.comments.length > 0) {
@@ -114,6 +124,29 @@ const ShowSetup = (props) => {
     //     ))
     // }
     /////////////////////////////////////////////
+}
+// --- DELETE COMMENT FUNCTION? -----------------------------//
+const removeTheComment = () => {
+    console.log("removeTheComment id", setup.comment.id)
+    console.log("removeTheComment _id", setup.comment._id)
+    // if (setup.comments.length)
+    removeComment(user, setup.comment._id)
+        .then(() => {
+            msgAlert({
+                heading: 'The comment has been removed!',
+                message: "",
+                variant: 'success',
+            })
+        })
+        .then(() => { navigate(`/setups`) })
+        .catch(() => {
+            msgAlert({
+                heading: 'Comment deletion failed.',
+                message: "",
+                variant: 'danger',
+            })
+        })
+}
     if (!setup) {
         return (
             <Container fluid className="justify-content-center">
@@ -183,7 +216,16 @@ const ShowSetup = (props) => {
 
             {setup.comments.map(comment => (
                 <Card> 
-                   <p>{comment.note}</p>
+                   <p>note:{comment.note}</p>
+                   <p>author:{comment.author.email}</p>
+                   <p>owner:{comment.owner}</p>
+                   <p>{comment.owner}</p>
+                   {/* <form action=`${apiUrl}/comments/${setupId}/${comId}?_method=DELETE" method="POST"`>
+                        <input type="submit" value="x">
+                    </form> */}
+                    <Button onClick={() => removeTheComment()} className="m-2" variant="danger">
+                        Delete Comment
+                    </Button>
                 </Card>
             ))}
 

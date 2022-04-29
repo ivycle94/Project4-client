@@ -9,8 +9,8 @@ const PostComment = (props) => {
     const { id } = useParams()
     // ******************** this might be the issue below 
     const { user, setup, msgAlert } = props
-    console.log('CreateComment -> user:', user)
-    console.log('CreateComment -> props:', props)
+    // console.log('CreateComment -> user:', user)
+    // console.log('CreateComment -> props:', props)
     const navigate = useNavigate()
 
     // we'll need two states
@@ -19,7 +19,7 @@ const PostComment = (props) => {
     })
    
 
-    console.log('CreateComment -> the comment: ', comment)
+    // console.log('CreateComment -> the comment: ', comment)
 
 
     const commentChange = (e) => {
@@ -34,8 +34,8 @@ const PostComment = (props) => {
 
             const updatedValue = { [name]: value }
 
-            console.log('prevComment', prevComment)
-            console.log('updatedValue', updatedValue)
+            // console.log('prevComment', prevComment)
+            // console.log('updatedValue', updatedValue)
 
             return { ...prevComment, ...updatedValue }
         })
@@ -47,10 +47,9 @@ const PostComment = (props) => {
         // console.log("res.data.setup._id ==>",res.data.setup._id)
         postComment(user, setup, comment)
         .then((res) => {
-            console.log("LOOK HERE LOOK HERE LOOK HERE\n", res)
-            console.log("LOOK HERE LOOK HERE LOOK HERE\n", setup)
+            // console.log("PostComment -> this is res\n", res)
+            // console.log("PostComment -> this is setup\n", setup)
         })
-        // ******************** this might be the issue below 
         // .then(res => { navigate(`/setups/${res.data.setup._id}`) })
         .then(res => { navigate(`/setups`) })
             // then we send a success message
@@ -67,13 +66,8 @@ const PostComment = (props) => {
                     message: "",
                     variant: 'danger',
                 }))
-        // console.log('Thew created comment -> ', comment)
+        // console.log('PostComment -> The created comment -> ', comment)
 
-        function showComments(){
-            if (setup.comments.length >= 1){
-                return ( <p>{setup.comment.note}</p> )
-            }
-        }
     }
 
     return (
