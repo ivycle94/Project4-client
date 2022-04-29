@@ -16,9 +16,7 @@ const ShowSetup = (props) => {
     /////////////////////////////////////////////
     // trying to add comments
 
-    // const [comment, setComment] = useState({
-    //     note: []
-    // })
+    const [comments, setComments] = useState([])
     // const [commBox, setcommBox] = useState(false)
     
     /////////////////////////////////////////////
@@ -31,13 +29,16 @@ const ShowSetup = (props) => {
     // console.log('id in showSetup', id)
     console.log('props in show page\n', props)
     console.log('props in show page\n', props)
-
+    
 
     // empty dependency array in useEffect to act like component did mount
     useEffect(() => {
         getOneSetup(id)
-            .then(res => 
+            .then(res => {
                 setSetup(res.data.setup)
+                setComments(res.data.setup.comments)
+                // setComments([...comment, 'New Item'])
+                }
             )
             .then(() => {
                 // msgAlert({
@@ -62,18 +63,20 @@ const ShowSetup = (props) => {
         removeSetup(user, setup._id)
             .then(() => {
                 msgAlert({
-                    // heading: 'The setup has been removed!',
-                    // message: removeSetupSuccess,
-                    // variant: 'success',
+                    heading: 'The setup has been removed!',
+                    message: "",
+                    variant: 'success',
                 })
             })
-            .then(() => { navigate(`/setups`) })
+            .then(() => { 
+                navigate(`/setups`) 
+            })
             .catch(() => {
-                // msgAlert({
-                //     heading: 'Setup deletion failed.',
-                //     message: removeSetupFailure,
-                //     variant: 'danger',
-                // })
+                msgAlert({
+                    heading: 'Setup deletion failed.',
+                    message: "",
+                    variant: 'danger',
+                })
             })
     }
 
@@ -125,8 +128,10 @@ const ShowSetup = (props) => {
     // }
     /////////////////////////////////////////////
 }
+
 // --- DELETE COMMENT FUNCTION? -----------------------------//
-const removeTheComment = () => {
+const removeTheComment = (comment) => {
+
     // console.log("removeTheComment id", setup.comment.id)
     // console.log("removeTheComment _id", setup.comment._id)
     console.log("removeTheComment setup", setup)
@@ -148,8 +153,8 @@ const removeTheComment = () => {
     //         })
     //     })
     // ========== ATTEMPT #2?
-    setup.comments.map(comment => {
-        removeComment(user, setup._id, comment._id)
+        removeComment(user, setup._id, comment)
+        // removeComment(user, setupId, comId)
             .then(() => {
                 msgAlert({
                     heading: 'The comment has been removed!',
@@ -158,18 +163,17 @@ const removeTheComment = () => {
                 })
             })
             .then(() => { 
-                navigate(`/setups`) 
+                console.log("DeletedComment ->\n", comment)
+                // navigate(`/setups`) 
+                navigate(`/setups/${setup._id}`) 
             })
             .catch(() => {
                 msgAlert({
                     heading: 'Comment deletion failed.',
                     message: "",
                     variant: 'danger',
-                })
             })
-    })
-
-    
+        }) 
 }
     if (!setup) {
         return (
@@ -236,16 +240,17 @@ const removeTheComment = () => {
                 handleClose={() => setModalOpen(false)}
             />
             {/* ///////////////////////////////////////////// */}
-            <PostComment user={user} setup={setup} msgAlert={msgAlert}/>
+            <PostComment 
+                key={comments._id} comments={comments} setup={setup}
+                user={user} msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+            />
 
-            {setup.comments.map(comment => (
+            {comments.map(comment => (
                 <Card> 
                    <p>note:{comment.note}</p>
                    <p>author:{comment.author.email}</p>       
-                   {/* <form action=`${apiUrl}/comments/${setupId}/${comId}?_method=DELETE" method="POST"`>
-                        <input type="submit" value="x">
-                    </form> */}
-                    <Button onClick={() => removeTheComment()} className="m-2" variant="danger">
+                    <Button onClick={() => removeTheComment(comment._id)} className="m-2" variant="danger">
                         Delete Comment
                     </Button>
                 </Card>

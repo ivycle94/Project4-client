@@ -8,19 +8,15 @@ import { Form, Container, Button } from 'react-bootstrap'
 const PostComment = (props) => {
     const { id } = useParams()
     // ******************** this might be the issue below 
-    const { user, setup, msgAlert } = props
+    const { user, setup, msgAlert, triggerRefresh } = props
     // console.log('CreateComment -> user:', user)
     // console.log('CreateComment -> props:', props)
     const navigate = useNavigate()
-
     // we'll need two states
     const [comment, setComment] = useState({
         note: []
     })
-   
-
     // console.log('CreateComment -> the comment: ', comment)
-
 
     const commentChange = (e) => {
         // e === event
@@ -50,8 +46,8 @@ const PostComment = (props) => {
             // console.log("PostComment -> this is res\n", res)
             // console.log("PostComment -> this is setup\n", setup)
         })
-        // .then(res => { navigate(`/setups/${res.data.setup._id}`) })
-        .then(res => { navigate(`/setups`) })
+        .then(res => { navigate(`/setups/${setup._id}`) })
+        // .then(res => { navigate(`/setups`) })
             // then we send a success message
             .then(() =>
                 msgAlert({
@@ -59,6 +55,7 @@ const PostComment = (props) => {
                     message: "",
                     variant: 'success',
                 }))
+            .then(() => triggerRefresh())
             // if there is an error, we'll send an error message
             .catch(() =>
                 msgAlert({
