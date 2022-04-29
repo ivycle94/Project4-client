@@ -5,7 +5,7 @@ import { Form, Container, Button } from 'react-bootstrap'
 // This is the Shared Form to be used for a Comment
 ///////////////////////////////////////////////////////////////
 const CommentForm = (props) => {
-    const { comment, commentSubmit, commentChange, heading } = props
+    const { comment, setup, commentSubmit, commentChange, heading } = props
 
     return (
         <Container className="justify-content-center">
@@ -15,7 +15,7 @@ const CommentForm = (props) => {
                 <Form.Control
                     type="text"
                     placeholder="Enter a Comment"
-                    name='comments'
+                    name='note'
                     onChange={commentChange}
                 />
                 <Button className="show-buttons" type='submit'>Submit</Button>
