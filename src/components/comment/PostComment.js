@@ -3,19 +3,17 @@ import { postComment } from '../../api/comment'
 // import { createCommentSuccess, createCommentFailure } from '../shared/AutoDismissAlert/messages'
 import { useNavigate, useParams } from 'react-router-dom'
 import CommentForm from '../shared/CommentForm'
-import { Form, Container, Button } from 'react-bootstrap'
+// import { Form, Container, Button } from 'react-bootstrap'
 
 const PostComment = (props) => {
-    const { id } = useParams()
+    // const { id } = useParams()
     // ******************** this might be the issue below 
     const { user, setup, msgAlert, triggerRefresh } = props
     // console.log('CreateComment -> user:', user)
     // console.log('CreateComment -> props:', props)
     const navigate = useNavigate()
     // we'll need two states
-    const [comment, setComment] = useState({
-        note: []
-    })
+    const [comment, setComment] = useState([])
     // console.log('CreateComment -> the comment: ', comment)
 
     const commentChange = (e) => {
@@ -26,7 +24,7 @@ const PostComment = (props) => {
 
             const name = e.target.name
             let value = e.target.value
-            console.log('etarget type', e.target.type)
+            // console.log('etarget type', e.target.type)
 
             const updatedValue = { [name]: value }
 
@@ -72,6 +70,7 @@ const PostComment = (props) => {
             comment={comment}
             commentChange={commentChange}
             commentSubmit={commentSubmit}
+            // triggerRefresh={triggerRefresh}
             heading=""
         />
         // <Container className="justify-content-center">

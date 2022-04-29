@@ -22,7 +22,7 @@ const ShowSetup = (props) => {
     /////////////////////////////////////////////
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
-    const { user, msgAlert } = props
+    const { user, triggerRefresh, msgAlert } = props
     const { id } = useParams()
     const navigate = useNavigate()
 
@@ -164,16 +164,17 @@ const removeTheComment = (comment) => {
             })
             .then(() => { 
                 console.log("DeletedComment ->\n", comment)
-                // navigate(`/setups`) 
+                navigate(`/setups`) 
                 navigate(`/setups/${setup._id}`) 
             })
+            // .then(() => triggerRefresh())
             .catch(() => {
                 msgAlert({
                     heading: 'Comment deletion failed.',
                     message: "",
                     variant: 'danger',
-            })
-        }) 
+                })
+            }) 
 }
     if (!setup) {
         return (
@@ -247,7 +248,7 @@ const removeTheComment = (comment) => {
             />
 
             {comments.map(comment => (
-                <Card> 
+                <Card key={comment._id}> 
                    <p>note:{comment.note}</p>
                    <p>author:{comment.author.email}</p>       
                     <Button onClick={() => removeTheComment(comment._id)} className="m-2" variant="danger">
