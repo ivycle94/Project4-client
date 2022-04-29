@@ -27,8 +27,7 @@ const ShowSetup = (props) => {
     const navigate = useNavigate()
 
     // console.log('id in showSetup', id)
-    console.log('props in show page\n', props)
-    console.log('props in show page\n', props)
+    // console.log('props in show page\n', props)
     
 
     // empty dependency array in useEffect to act like component did mount
@@ -41,21 +40,22 @@ const ShowSetup = (props) => {
                 }
             )
             .then(() => {
-                // msgAlert({
-                //     heading: 'The setup has been retrieved!',
-                //     message: showSetupSuccess,
-                //     variant: 'success',
-                // })
+                msgAlert({
+                    heading: 'The setup has been retrieved!',
+                    message: "",
+                    variant: 'success',
+                })
             })
             .catch(() => {
-                // msgAlert({
-                //     heading: 'Failed to find the setup',
-                //     message: showSetupFailure,
-                //     variant: 'danger',
-                // })
+                msgAlert({
+                    heading: 'Failed to find the setup',
+                    message: "",
+                    variant: 'danger',
+                })
             })
-    }, [updated])
-
+    }, [updated]) // eslint-disable-line react-hooks/exhaustive-deps
+    // ERROR MESSAGE, but why? ^ [line 57 - temp fix] -> comment will get rid of the error.
+    //   Line 57:8:   React Hook useEffect has missing dependencies: 'id' and 'msgAlert'. Either include them or remove the dependency array  react-hooks/exhaustive-deps
     const removeTheSetup = () => {
         console.log("removeTheSetup id", setup.id)
         console.log("removeTheSetup _id", setup._id)

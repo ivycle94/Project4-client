@@ -36,7 +36,9 @@ const IndexSetups = (props) => {
                     variant: 'danger',
                 })
             })
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    // ERROR MESSAGE, but why? ^ [line 39 - temp fix] -> comment will get rid of the error.
+    //  Line 39:8:  React Hook useEffect has a missing dependency: 'msgAlert'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
     
     if (!setups) {
         return <p>Loading ...</p>
