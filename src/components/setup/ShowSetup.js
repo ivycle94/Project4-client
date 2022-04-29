@@ -127,25 +127,49 @@ const ShowSetup = (props) => {
 }
 // --- DELETE COMMENT FUNCTION? -----------------------------//
 const removeTheComment = () => {
-    console.log("removeTheComment id", setup.comment.id)
-    console.log("removeTheComment _id", setup.comment._id)
-    // if (setup.comments.length)
-    removeComment(user, setup.comment._id)
-        .then(() => {
-            msgAlert({
-                heading: 'The comment has been removed!',
-                message: "",
-                variant: 'success',
+    // console.log("removeTheComment id", setup.comment.id)
+    // console.log("removeTheComment _id", setup.comment._id)
+    console.log("removeTheComment setup", setup)
+    // ========== ATTEMPT #1?
+    // removeComment(user, setup.comment._id)
+    //     .then(() => {
+    //         msgAlert({
+    //             heading: 'The comment has been removed!',
+    //             message: "",
+    //             variant: 'success',
+    //         })
+    //     })
+    //     .then(() => { navigate(`/setups`) })
+    //     .catch(() => {
+    //         msgAlert({
+    //             heading: 'Comment deletion failed.',
+    //             message: "",
+    //             variant: 'danger',
+    //         })
+    //     })
+    // ========== ATTEMPT #2?
+    setup.comments.map(comment => {
+        removeComment(user, setup._id, comment._id)
+            .then(() => {
+                msgAlert({
+                    heading: 'The comment has been removed!',
+                    message: "",
+                    variant: 'success',
+                })
             })
-        })
-        .then(() => { navigate(`/setups`) })
-        .catch(() => {
-            msgAlert({
-                heading: 'Comment deletion failed.',
-                message: "",
-                variant: 'danger',
+            .then(() => { 
+                navigate(`/setups`) 
             })
-        })
+            .catch(() => {
+                msgAlert({
+                    heading: 'Comment deletion failed.',
+                    message: "",
+                    variant: 'danger',
+                })
+            })
+    })
+
+    
 }
     if (!setup) {
         return (
@@ -217,9 +241,7 @@ const removeTheComment = () => {
             {setup.comments.map(comment => (
                 <Card> 
                    <p>note:{comment.note}</p>
-                   <p>author:{comment.author.email}</p>
-                   <p>owner:{comment.owner}</p>
-                   <p>{comment.owner}</p>
+                   <p>author:{comment.author.email}</p>       
                    {/* <form action=`${apiUrl}/comments/${setupId}/${comId}?_method=DELETE" method="POST"`>
                         <input type="submit" value="x">
                     </form> */}
