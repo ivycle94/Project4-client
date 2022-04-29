@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getAllSetups } from '../../api/setup'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-// add message handling
+import { indexSetupsSuccess, indexSetupsFailure } from '../shared/AutoDismissAlert/messages'
 
 const cardContainerLayout = {
     display: 'flex',
@@ -13,7 +13,7 @@ const cardContainerLayout = {
 const IndexSetups = (props) => {
 
     const [setups, setSetups] = useState(null)
-    // const { msgAlert } = props
+    const { msgAlert } = props
 
     useEffect(() => {
         getAllSetups()
@@ -23,18 +23,18 @@ const IndexSetups = (props) => {
                 // console.log("IndexSetup: setups: ", setups)
             })
             .then(() => {
-                // msgAlert({
-                //     heading: 'Spooky Setups have been retrieved!',
-                //     message: indexSetupsSuccess,
-                //     variant: 'success',
-                // })
+                msgAlert({
+                    heading: 'Success!',
+                    message: indexSetupsSuccess,
+                    variant: 'success',
+                })
             })
             .catch(() => {
-                // msgAlert({
-                //     heading: 'Failed to retrieve Spooky Setups!',
-                //     message: indexSetupsFailure,
-                //     variant: 'danger',
-                // })
+                msgAlert({
+                    heading: 'Oh No...',
+                    message: indexSetupsFailure,
+                    variant: 'danger',
+                })
             })
     }, [])
     
