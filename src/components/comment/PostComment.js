@@ -56,9 +56,9 @@ const PostComment = (props) => {
             // then we send a success message
             .then(() =>
                 msgAlert({
-                    // heading: 'Your comment has been added!',
-                    // message: createCommentSuccess,
-                    // variant: 'success',
+                    heading: 'Your comment has been added!',
+                    message: "",
+                    variant: 'success',
                 }))
             // if there is an error, we'll send an error message
             .catch(() =>
@@ -68,6 +68,12 @@ const PostComment = (props) => {
                     variant: 'danger',
                 }))
         // console.log('Thew created comment -> ', comment)
+
+        function showComments(){
+            if (setup.comments.length >= 1){
+                return ( <p>{setup.comment.note}</p> )
+            }
+        }
     }
 
     return (
@@ -75,7 +81,7 @@ const PostComment = (props) => {
             comment={comment}
             commentChange={commentChange}
             commentSubmit={commentSubmit}
-            heading="Add a comment!"
+            heading=""
         />
         // <Container className="justify-content-center">
         //     <h3>ADD COM</h3>

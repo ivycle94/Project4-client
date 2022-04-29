@@ -100,6 +100,19 @@ const ShowSetup = (props) => {
     //     }
     // }
 
+    // let commCards
+
+    // if (setup.comments.length > 0) {
+    //     commCards = setup.comments.map(comment => (
+    //         <Card  style={{ width: '30%' }} className="m-2">
+    //             <Card.Header className='header-name'>Comments:</Card.Header>
+    //             <Card.Body className="card-body d-flex flex-column justify-content-end">
+
+    //                     <p>{comment.note}</p>
+    //             </Card.Body>
+    //         </Card>
+    //     ))
+    // }
     /////////////////////////////////////////////
     if (!setup) {
         return (
@@ -155,7 +168,6 @@ const ShowSetup = (props) => {
                         {/* ///////////////////////////////////////////// */}
                     </Card.Footer>
                 </Card>
-                {/* <ShowComments/> */}
             </Container>
             <EditSetupModal
                 setup={setup}
@@ -168,6 +180,13 @@ const ShowSetup = (props) => {
             />
             {/* ///////////////////////////////////////////// */}
             <PostComment user={user} setup={setup} msgAlert={msgAlert}/>
+
+            {setup.comments.map(comment => (
+                <Card> 
+                   <p>{comment.note}</p>
+                </Card>
+            ))}
+
             {/* ///////////////////////////////////////////// */}
         </>
     )

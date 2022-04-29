@@ -12,11 +12,12 @@ export const postComment = (user, setupId, newComment) => {
         headers: {
             Authorization: `Token token=${user.token}`
         },
-        data: {comment: { 
-                note: newComment.note,
-                author: newComment.author
-        }
-    }
+        // data: {comment: { 
+        //         note: newComment.note,
+        //         author: newComment.author
+        //     }
+        // }
+        data: { comment: newComment }
 
     })
 }
