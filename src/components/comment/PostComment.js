@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { postComment } from '../../api/comment'
 // import { createCommentSuccess, createCommentFailure } from '../shared/AutoDismissAlert/messages'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import CommentForm from '../shared/CommentForm'
 // import { Form, Container, Button } from 'react-bootstrap'
 

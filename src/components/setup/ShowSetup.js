@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { getOneSetup, updateSetup, removeSetup } from '../../api/setup'
 import { removeComment } from '../../api/comment'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Spinner, Container, Card, Button, Form } from 'react-bootstrap'
+import { Spinner, Container, Card, Button } from 'react-bootstrap'
 import EditSetupModal from './EditSetupModal'
 import PostComment from '../comment/PostComment'
 // import CommentForm from '../shared/CommentForm'
@@ -22,7 +22,7 @@ const ShowSetup = (props) => {
     /////////////////////////////////////////////
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
-    const { user, triggerRefresh, msgAlert } = props
+    const { user, msgAlert } = props
     const { id } = useParams()
     const navigate = useNavigate()
 
@@ -198,7 +198,11 @@ const removeTheComment = (comment) => {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer className="show-footer">
-                        <a href="javascript:history.back()"><Button className="show-buttons" variant='dark'>Back</Button></a>
+                    <Link to={`/setups`}> 
+                        <Button className="show-buttons" variant='dark'>
+                            Back 
+                        </Button>   
+                    </Link>
                          {/* Trying to set a condtional where only the USER who is the OWNER of the setup can edit/delete the setup */}
                         {/* {
                             setup.owner && user && (user._id === setup.owner.id)  ?
