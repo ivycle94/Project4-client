@@ -7,6 +7,7 @@ import { Spinner, Container, Card, Button } from 'react-bootstrap'
 import EditSetupModal from './EditSetupModal'
 import PostComment from '../comment/PostComment'
 import IndexTags from '../tag/IndexTags'
+import SetupForm from '../shared/SetupForm'
 // import favorite creation
 // import msg handling later
 
@@ -20,7 +21,7 @@ const ShowSetup = (props) => {
     /////////////////////////////////////////////
     /////////////////////////////////////////////
     // trying to add comments
-    const [tags, setTags] = useState(null)
+    // const [tags, setTags] = useState(null)
     // const [commBox, setcommBox] = useState(false)  
     /////////////////////////////////////////////
     const [modalOpen, setModalOpen] = useState(false)
@@ -241,13 +242,14 @@ const removeTheComment = (comment) => {
                 updateSetup={updateSetup}
                 handleClose={() => setModalOpen(false)}
             />
-            <IndexTags  
+            {/* THIS SHOWS THE INDEX OF TAGS */}
+            {/* <IndexTags  
                 // key={tags.id} 
                 comments={tags} 
                 setup={setup}
                 user={user} 
                 msgAlert={msgAlert}
-            />
+            /> */}
             <PostComment 
                 key={comments._id} comments={comments} setup={setup}
                 user={user} msgAlert={msgAlert}

@@ -12,7 +12,9 @@ const cardContainerLayout = {
 const IndexTags = (props) => {
 
     const [tags, setTags] = useState(null)
-    const {user, msgAlert } = props
+    const { msgAlert } = props
+    // console.log("IndexTags props ->\n",props)
+    // console.log("IndexTags tags ->\n",tags)
 
     useEffect(() => {
         getAllTags()
@@ -21,21 +23,18 @@ const IndexTags = (props) => {
                 // console.log("res.data", res.data);
                 // console.log("IndexTag: tags: ", tags)
             })
-            .then(() => {
-                msgAlert({
-                    heading: 'Success!',
-                    message: "",
-                    variant: 'success',
-                })
-            })
-            .catch(() => {
-                msgAlert({
-                    heading: 'Oh No...',
-                    message: "",
-                    variant: 'danger',
-                })
+            .catch((error) => {
+                console.log(error)
             })
     }, []) 
+    console.log("IndexTags tags after useEffect ->\n",tags)
+    const addTag = (e) => {
+        // console.log("clicked", e.target)
+        console.log("clicked", e.target.innerText)
+        // console.log("The Tag I clicked\n", tags._id)
+        
+        // if (e.target.innerText ===)
+    }
   
     if (!tags) {
         return <p>Loading ...</p>
@@ -43,26 +42,24 @@ const IndexTags = (props) => {
         return <p>No Tags yet, go add some</p>
     }
 
-    let tagCards
+    let tagButtons
 
     if (tags.length > 0) {
-        tagCards = tags.map(tag => (
-            <Card key={tag._id} style={{ width: '8%' }} className="m-2">
-                <Card.Body className="card-body d-flex flex-column justify-content-end">
-                <Button>
-                    <Card.Text className="card-text">
+        tagButtons = tags.map(tag => (
+            <div key={tag._id} className="m-2">
+                <Button onClick={addTag}>
                         {tag.text}
-                    </Card.Text>
-            </Button>
-                </Card.Body>
-            </Card>
+                </Button>
+            </div>
         ))
     }
+
+ 
 
     return (
         <>
             <div style={cardContainerLayout}>
-                {tagCards}
+                {tagButtons}
             </div>
         </>
     )
