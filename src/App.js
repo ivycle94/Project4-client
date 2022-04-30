@@ -15,6 +15,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateSetup from './components/setup/CreateSetup'
+import IndexTags from './components/tag/IndexTags'
 
 const App = () => {
 
@@ -82,8 +83,14 @@ const App = () => {
 						<RequireAuth user={user}>
 							<CreateSetup msgAlert={msgAlert} user={user} />
 						</RequireAuth>
-					}
-				/>
+						}
+					/>
+					<Route
+						path='/addSetup'
+						element={
+							<IndexTags msgAlert={msgAlert} user={user} />
+						}
+					/>
 				</Routes>
 				{msgAlerts.map((msgAlert) => (
 					<AutoDismissAlert

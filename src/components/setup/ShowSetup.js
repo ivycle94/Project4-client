@@ -6,7 +6,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Spinner, Container, Card, Button } from 'react-bootstrap'
 import EditSetupModal from './EditSetupModal'
 import PostComment from '../comment/PostComment'
-// import CommentForm from '../shared/CommentForm'
+import IndexTags from '../tag/IndexTags'
 // import favorite creation
 // import msg handling later
 
@@ -15,21 +15,21 @@ const ShowSetup = (props) => {
     const [setup, setSetup] = useState(null)
     /////////////////////////////////////////////
     // trying to add comments
-
     const [comments, setComments] = useState([])
-    // const [commBox, setcommBox] = useState(false)
-    
+    // const [commBox, setcommBox] = useState(false)  
+    /////////////////////////////////////////////
+    /////////////////////////////////////////////
+    // trying to add comments
+    const [tags, setTags] = useState(null)
+    // const [commBox, setcommBox] = useState(false)  
     /////////////////////////////////////////////
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
     const { user, msgAlert } = props
     const { id } = useParams()
     const navigate = useNavigate()
-
     // console.log('id in showSetup', id)
     // console.log('props in show page\n', props)
-    
-
     // empty dependency array in useEffect to act like component did mount
     useEffect(() => {
         getOneSetup(id)
@@ -79,7 +79,6 @@ const ShowSetup = (props) => {
                 })
             })
     }
-
     const trashCode = () => {
     /////////////////////////////////////////////
     //============================================//
@@ -128,7 +127,6 @@ const ShowSetup = (props) => {
     // }
     /////////////////////////////////////////////
 }
-
 // --- DELETE COMMENT FUNCTION? -----------------------------//
 const removeTheComment = (comment) => {
 
@@ -220,7 +218,6 @@ const removeTheComment = (comment) => {
                         {
                             user ? null : null
                         } */}
-
                         <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
                             Edit Setup
                         </Button>
@@ -234,7 +231,7 @@ const removeTheComment = (comment) => {
                         {/* ///////////////////////////////////////////// */}
                     </Card.Footer>
                 </Card>
-            </Container>
+            
             <EditSetupModal
                 setup={setup}
                 show={modalOpen}
@@ -244,13 +241,18 @@ const removeTheComment = (comment) => {
                 updateSetup={updateSetup}
                 handleClose={() => setModalOpen(false)}
             />
-            {/* ///////////////////////////////////////////// */}
+            <IndexTags  
+                // key={tags.id} 
+                comments={tags} 
+                setup={setup}
+                user={user} 
+                msgAlert={msgAlert}
+            />
             <PostComment 
                 key={comments._id} comments={comments} setup={setup}
                 user={user} msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
             />
-
             {comments.map(comment => (
                 <Card key={comment._id}> 
                    <p>note:{comment.note}</p>
@@ -260,8 +262,7 @@ const removeTheComment = (comment) => {
                     </Button>
                 </Card>
             ))}
-
-            {/* ///////////////////////////////////////////// */}
+            </Container>
         </>
     )
 }
