@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // index function
 export const getAllSetups = () => {
+    // console.log("IndexFunction for SETUP -> User\n", user)
     return axios(`${apiUrl}/setups`)
 }
 

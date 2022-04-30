@@ -6,6 +6,9 @@ import SetupForm from '../shared/SetupForm'
 const EditSetupModal = (props) => {
     const { user, show, handleClose, updateSetup, msgAlert, triggerRefresh } = props
     const [setup, setSetup] = useState(props.setup)
+    // console.log("EditSetupModal user ->\n", user)
+    console.log("EditSetupModal props ->\n", props)
+    // console.log("EditSetupModal props.setup ->\n", props.setup)
 
     const handleChange = (e) => {
         // e === event

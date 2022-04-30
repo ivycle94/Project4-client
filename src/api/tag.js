@@ -3,7 +3,7 @@ import axios from 'axios'
 
 // index function
 export const getAllTags = (user) => {
-    console.log("IndexFunction -> User\n", user)
+    console.log("IndexFunction for TAG -> User\n", user)
     // console.log("IndexFunction -> User\n", tag)
     return axios(`${apiUrl}/tags`)
 }
