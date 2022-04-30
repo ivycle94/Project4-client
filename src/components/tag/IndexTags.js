@@ -29,10 +29,11 @@ const IndexTags = (props) => {
     }, []) 
     console.log("IndexTags tags after useEffect ->\n",tags)
     const addTag = (e) => {
-        // console.log("clicked", e.target)
-        console.log("clicked", e.target.innerText)
-        // console.log("The Tag I clicked\n", tags._id)
-        
+        console.log("This is e.target ->\n", e.target)
+        console.log("This is e.target.id ->\n", e.target.id)
+        console.log("This is e.target.innerText\n", e.target.innerText)
+        console.log("This tags._id\n", tags._id)
+        console.log("This is tags[0]._id\n", tags[0]._id)
         // if (e.target.innerText ===)
     }
   
@@ -45,9 +46,9 @@ const IndexTags = (props) => {
     let tagButtons
 
     if (tags.length > 0) {
-        tagButtons = tags.map(tag => (
-            <div key={tag._id} className="m-2">
-                <Button onClick={addTag}>
+        tagButtons = tags.map((tag, index) => (
+            <div  className="m-2">
+                <Button id={tag._id} onClick={addTag}>
                         {tag.text}
                 </Button>
             </div>
