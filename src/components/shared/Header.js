@@ -4,25 +4,27 @@ import Navbar from 'react-bootstrap/Navbar'
 import { Link } from 'react-router-dom'
 const linkStyle = {
     color: 'white',
-    textDecoration: 'none'
+    textDecoration: 'none',
+	fontFamily: 'Aldrich',
+	fontSize: '1.1em',
 }
 const authenticatedOptions = (
 	<>
 		<Nav.Item>
-			<Link to='addSetup' style={linkStyle}>
+			<Link className='navLinks' to='addSetup' style={linkStyle}>
 				Add Setup
 			</Link>
 		</Nav.Item>
 		<Nav.Item>
-		    <Link to='setups' style={linkStyle}>Setups</Link>
+		    <Link className='navLinks' to='setups' style={linkStyle}>Setups</Link>
         </Nav.Item>
 		<Nav.Item>
-			<Link to='change-password' style={linkStyle}>
+			<Link className='navLinks' to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
 		</Nav.Item>
 		<Nav.Item>
-			<Link to='sign-out' style={linkStyle}>
+			<Link className='navLinks' to='sign-out' style={linkStyle}>
 				Sign Out
 			</Link>
 		</Nav.Item>
@@ -32,30 +34,33 @@ const authenticatedOptions = (
 const unauthenticatedOptions = (
 	<>
 		<Nav.Item>
-		    <Link to='setups' style={linkStyle}>Setups</Link>
+		    <Link className='navLinks' to='setups' style={linkStyle}>Setups</Link>
         </Nav.Item>
         <Nav.Item>
-		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
+		    <Link className='navLinks' to='sign-up' style={linkStyle}>Sign Up</Link>
         </Nav.Item>
         <Nav.Item>
-		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
+		    <Link className='navLinks' to='sign-in' style={linkStyle}>Sign In</Link>
         </Nav.Item>
 	</>
 )
 
 const alwaysOptions = (
 	<>
-		<Nav.Link>
-			<Link to='/' style={linkStyle}>
+		<Nav.Item>
+			<Link className='navLinks' to='/' style={linkStyle}>
 				Home
 			</Link>
-		</Nav.Link>
+		</Nav.Item>
 	</>
 )
 
 const Header = ({ user }) => (
-	<Navbar bg='primary' variant='dark' expand='md'>
+	<Navbar  sticky="top" className='navBody' variant='dark' expand='md'>
 		<Navbar.Brand>
+			<Link to='/'>
+				<img className="navIcon" src="https://i.imgur.com/BNMYe97.png"/>
+			</Link>
             <Link to='/' style={linkStyle}>
                 Bastion
             </Link>
@@ -64,7 +69,7 @@ const Header = ({ user }) => (
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>
 				{user && (
-					<span className='navbar-text mr-2'>Welcome, {user.email}</span>
+					<span className='userName'> Welcome, {user.email} </span>
 				)}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}
