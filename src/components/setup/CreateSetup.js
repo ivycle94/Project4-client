@@ -11,8 +11,7 @@ const CreateSetup = (props) => {
 
     // we'll need two states
     const [setup, setSetup] = useState({
-        title: '', description: '', img: ''
-        // , tags: []
+        title: '', description: '', img: '', tags: []
     })
 
     // console.log('In create setup', setup)
