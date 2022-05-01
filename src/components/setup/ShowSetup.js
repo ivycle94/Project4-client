@@ -7,23 +7,16 @@ import { Spinner, Container, Card, Button } from 'react-bootstrap'
 import EditSetupModal from './EditSetupModal'
 import PostComment from '../comment/PostComment'
 import IndexTags from '../tag/IndexTags'
-import SetupForm from '../shared/SetupForm'
 // import favorite creation
 // import msg handling later
 
 const ShowSetup = (props) => {
 
     const [setup, setSetup] = useState(null)
-    /////////////////////////////////////////////
-    // trying to add comments
+    // Tag is it's own model, so it shouldn't go in here wtf????
+    // const [tags, setTags] = useState([])
+
     const [comments, setComments] = useState([])
-    // const [commBox, setcommBox] = useState(false)  
-    /////////////////////////////////////////////
-    /////////////////////////////////////////////
-    // trying to add comments
-    // const [tags, setTags] = useState(null)
-    // const [commBox, setcommBox] = useState(false)  
-    /////////////////////////////////////////////
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
     const { user, msgAlert } = props
@@ -31,13 +24,13 @@ const ShowSetup = (props) => {
     const navigate = useNavigate()
     // console.log('id in showSetup', id)
     // console.log('props in show page\n', props)
-    // empty dependency array in useEffect to act like component did mount
     useEffect(() => {
         getOneSetup(id)
             .then(res => {
                 setSetup(res.data.setup)
                 setComments(res.data.setup.comments)
-                // setComments([...comment, 'New Item'])
+                // Tag is it's own model, so it shouldn't go in here wtf???
+                // setTags(res.data.tags)
                 }
             )
             .then(() => {
@@ -80,78 +73,12 @@ const ShowSetup = (props) => {
                 })
             })
     }
-    const trashCode = () => {
-    /////////////////////////////////////////////
-    //============================================//
-    // COMMENTS -> WORK IN PROGRESS         
-    //============================================//
-
-    //--- COMMENT CHANGE FUNCTION? -----------------------------//
-    // const commentChange = (e) => {
-        
-    //     // e === event
-    //     e.persist()
-
-    //     setComment(prevComment => {
-
-    //         const name = e.target.name
-    //         let value = e.target.value
-    //         console.log('etarget type', e.target.type)
-
-    //         const updatedValue = { [name]: value }
-
-    //         console.log('prevComment', prevComment)
-    //         console.log('updatedValue', updatedValue)
-
-    //         return { ...prevComment, ...updatedValue }
-    //     })
-    // }
-    //--- COMMENT DISPLAY FUNCTION? -----------------------------//
-    // function showComments(){
-    //     if (setup.comments.length >= 1){
-    //         return ( <p>{setup.comment.note}</p> )
-    //     }
-    // }
-    //--- MAPPING THROUGH COMMENTS -----------------------------//
-    // let commCards
-
-    // if (setup.comments.length > 0) {
-    //     commCards = setup.comments.map(comment => (
-    //         <Card  style={{ width: '30%' }} className="m-2">
-    //             <Card.Header className='header-name'>Comments:</Card.Header>
-    //             <Card.Body className="card-body d-flex flex-column justify-content-end">
-
-    //                     <p>{comment.note}</p>
-    //             </Card.Body>
-    //         </Card>
-    //     ))
-    // }
-    /////////////////////////////////////////////
-}
+    
 // --- DELETE COMMENT FUNCTION? -----------------------------//
 const removeTheComment = (comment) => {
-
     // console.log("removeTheComment id", setup.comment.id)
     // console.log("removeTheComment _id", setup.comment._id)
-    console.log("removeTheComment setup", setup)
-    // ========== ATTEMPT #1?
-    // removeComment(user, setup.comment._id)
-    //     .then(() => {
-    //         msgAlert({
-    //             heading: 'The comment has been removed!',
-    //             message: "",
-    //             variant: 'success',
-    //         })
-    //     })
-    //     .then(() => { navigate(`/setups`) })
-    //     .catch(() => {
-    //         msgAlert({
-    //             heading: 'Comment deletion failed.',
-    //             message: "",
-    //             variant: 'danger',
-    //         })
-    //     })
-    // ========== ATTEMPT #2?
+    // console.log("removeTheComment setup", setup)
         removeComment(user, setup._id, comment)
         // removeComment(user, setupId, comId)
             .then(() => {
@@ -184,6 +111,13 @@ const removeTheComment = (comment) => {
             </Container>
         )
     }
+// --- display the tags function? -----------------------------//
+    // let tagsDisplay
+    // if (setup.tags.length > 0){
+    //     tagsDisplay = setup.tags.map(tag => (
+    //         {tag}
+    //     ))
+    // }
     return (
         <>
             <Container className="fluid mt-5">
@@ -193,7 +127,9 @@ const removeTheComment = (comment) => {
                         <img className="show-image" src={setup.img} alt="setup"/>
                         <Card.Text className="show-description">
                             <small><b>Description:</b><br/> {setup.description}</small><br />
-                            {/* <small><b>Tags:</b><br/> {setup.tags.text}</small><br /> */}
+                            {/* Make for loop to map tags to render on page */}
+                            {/* <small><b>Tags:</b><br/> {setup.tags.text}</small><br />
+                            <small><b>Tags:</b><br/> {tagsDisplay}</small><br /> */}
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer className="show-footer">
@@ -225,14 +161,17 @@ const removeTheComment = (comment) => {
                         <Button onClick={() => removeTheSetup()} className="m-2" variant="danger">
                             Delete Setup
                         </Button>
-                        {/* ///////////////////////////////////////////// */}
-                        {/* <Button onClick={() => setcommBox(true)} className="m-2" variant="danger">
-                            Comment
-                        </Button> */}
-                        {/* ///////////////////////////////////////////// */}
                     </Card.Footer>
                 </Card>
-            
+                {/* {user._id === setup.owner &&  */}
+                    <IndexTags 
+                        user={user}
+                        setupId={setup._id}
+                        triggerRefresh={()=> {
+                            setUpdated(prev => !prev)
+                        }}
+                    />
+                 {/* } */}
             <EditSetupModal
                 setup={setup}
                 show={modalOpen}
@@ -242,19 +181,13 @@ const removeTheComment = (comment) => {
                 updateSetup={updateSetup}
                 handleClose={() => setModalOpen(false)}
             />
-            {/* THIS SHOWS THE INDEX OF TAGS */}
-            {/* <IndexTags  
-                // key={tags.id} 
-                comments={tags} 
-                setup={setup}
-                user={user} 
-                msgAlert={msgAlert}
-            /> */}
+            {/* This is where the comment box/form is displayed */}
             <PostComment 
                 key={comments._id} comments={comments} setup={setup}
                 user={user} msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
             />
+            {/* This is where the comments are displayed */}
             {comments.map(comment => (
                 <Card key={comment._id}> 
                    <p>note:{comment.note}</p>

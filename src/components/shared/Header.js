@@ -59,7 +59,7 @@ const Header = ({ user }) => (
 	<Navbar  sticky="top" className='navBody' variant='dark' expand='md'>
 		<Navbar.Brand>
 			<Link to='/'>
-				<img className="navIcon" src="https://i.imgur.com/BNMYe97.png"/>
+				<img className="navIcon" src="https://i.imgur.com/BNMYe97.png" alt=""/>
 			</Link>
             <Link to='/' style={linkStyle}>
                 Bastion
