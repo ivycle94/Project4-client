@@ -10,12 +10,11 @@ import IndexTags from '../tag/IndexTags'
 ///////////////////////////////////////////////////////////////
 const SetupForm = (props) => {
     const [tags, setTags] = useState([])
-    const { setup, handleSubmit, handleChange, heading, user} = props
+    const { setup, tag, handleSubmit, handleChange, heading, user} = props
     // console.log("SetupForm user ->\n", user)
     console.log("SetupForm props ->\n", props.user)
-    console.log("SetupForm setup ->\n", setup)
-    console.log("SetupForm setup.tags ->\n", setup.tags)
-    
+    // console.log("SetupForm setup ->\n", setup)
+    console.log("SetupForm tag ->\n", tag)
     // create a function that adds tags to tags array
  
     return (
@@ -43,15 +42,15 @@ const SetupForm = (props) => {
                     name='description'
                     onChange={handleChange}
                 />
-                {/* <Form.Label>Tags</Form.Label>
+                {/* <Form.Label>Tags:</Form.Label>
                 <Form.Control
                     placeholder="Tags"
                     value={setup.tags}
                     name='tags'
                     onChange={handleChange}
                 /> */}
-                <Form.Label>Tags:</Form.Label>
-                <IndexTags  
+                <IndexTags
+                    id={tags._id}  
                     // key={tags.id} 
                     tags={tags} 
                     setup={setup}

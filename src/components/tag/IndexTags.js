@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { getAllTags } from '../../api/tag'
-import { Link } from 'react-router-dom'
-import { Spinner, Container, Card, Button } from 'react-bootstrap'
+import { getAllTags, addTag } from '../../api/tag'
+// import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
+
 
 const cardContainerLayout = {
     display: 'flex',
@@ -12,8 +13,8 @@ const cardContainerLayout = {
 const IndexTags = (props) => {
 
     const [tags, setTags] = useState(null)
-    const { msgAlert } = props
-    // console.log("IndexTags props ->\n",props)
+    const { setupId, user, triggerRefresh } = props
+    console.log("IndexTags props ->\n",props)
     // console.log("IndexTags tags ->\n",tags)
 
     useEffect(() => {
@@ -27,14 +28,22 @@ const IndexTags = (props) => {
                 console.log(error)
             })
     }, []) 
-    console.log("IndexTags tags after useEffect ->\n",tags)
-    const addTag = (e) => {
+    // console.log("IndexTags tags after useEffect ->\n",tags)
+
+    const addATag = (e) => {
         console.log("This is e.target ->\n", e.target)
-        console.log("This is e.target.id ->\n", e.target.id)
+        console.log("This is e.target.id ->\n", e.target._id)
         console.log("This is e.target.innerText\n", e.target.innerText)
-        console.log("This tags._id\n", tags._id)
-        console.log("This is tags[0]._id\n", tags[0]._id)
-        // if (e.target.innerText ===)
+        // console.log("This tags._id\n", tags._id)
+        // console.log("This is tags[0]._id\n", tags[0]._id)
+        // if (e.target.id ===)
+        // this works but need to use id istead of inner text
+        addTag(user, setupId, e.target.innerText)
+        // addTag(user, setupId, e.target._id)
+            .then(()=> {
+                triggerRefresh()
+            })
+            .catch(console.error)
     }
   
     if (!tags) {
@@ -46,16 +55,16 @@ const IndexTags = (props) => {
     let tagButtons
 
     if (tags.length > 0) {
-        tagButtons = tags.map((tag, index) => (
+        tagButtons = tags.map((tag) => (
             <div  className="m-2">
-                <Button id={tag._id} onClick={addTag}>
-                        {tag.text}
+                <Button id={tag._id} onClick={addATag}>
+                {/* // this works but need to use id istead of inner text */}
+                       <div key={tag._id}> {tag._id}</div>
+                       {/* <div key="{tag}"> {tag.text}</div> */}
                 </Button>
             </div>
         ))
     }
-
- 
 
     return (
         <>
@@ -65,6 +74,5 @@ const IndexTags = (props) => {
         </>
     )
 }
-
 
 export default IndexTags
