@@ -112,12 +112,13 @@ const removeTheComment = (comment) => {
         )
     }
 // --- display the tags function? -----------------------------//
-    // let tagsDisplay
-    // if (setup.tags.length > 0){
-    //     tagsDisplay = setup.tags.map(tag => (
-    //         {tag}
-    //     ))
-    // }
+let tagsArray
+if (setup.tags.length > 0) {
+    tagsArray = setup.tags.map((tag) => (
+        <p>{tag.text}</p>
+    ))
+}
+    console.log("PLEASE FIND MY TAGS\n", setup.tags)
     return (
         <>
             <Container className="fluid mt-5">
@@ -128,8 +129,12 @@ const removeTheComment = (comment) => {
                         <Card.Text className="show-description">
                             <small><b>Description:</b><br/> {setup.description}</small><br />
                             {/* Make for loop to map tags to render on page */}
-                            {/* <small><b>Tags:</b><br/> {setup.tags.text}</small><br />
-                            <small><b>Tags:</b><br/> {tagsDisplay}</small><br /> */}
+                            <small><b>Tags:</b><br/></small> 
+                            {/* <small>{setup.tags.text}</small> */}
+                            {/* <small><b>Tags:</b><br/> {tagsDisplay}</small><br /> */}
+                            {/* <Button > */}
+                                <small>{tagsArray}</small>
+                            {/* </Button> */}
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer className="show-footer">
@@ -169,9 +174,10 @@ const removeTheComment = (comment) => {
                         setupId={setup._id}
                         triggerRefresh={()=> {
                             setUpdated(prev => !prev)
-                        }}
+                            }
+                        }
                     />
-                 {/* } */}
+                {/* } */}
             <EditSetupModal
                 setup={setup}
                 show={modalOpen}

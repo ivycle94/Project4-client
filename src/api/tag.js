@@ -12,6 +12,7 @@ export const getAllTags = (user) => {
 export const addTag = (user, setupId, tagId) => {
     console.log('user', user)
     console.log('this is setupId', setupId)
+    console.log("this is tagId", tagId)
     return axios({
         url: `${apiUrl}/tags/${setupId}/${tagId}`,
         method: 'PATCH',

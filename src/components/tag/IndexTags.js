@@ -29,17 +29,18 @@ const IndexTags = (props) => {
             })
     }, []) 
     // console.log("IndexTags tags after useEffect ->\n",tags)
-
-    const addATag = (e) => {
-        console.log("This is e.target ->\n", e.target)
-        console.log("This is e.target.id ->\n", e.target._id)
-        console.log("This is e.target.innerText\n", e.target.innerText)
+    // using e = event didnt work, so had to chnage e to tId
+    // const addATag = (e) => {
+    const addATag = (tId) => {
+        // console.log("This is e.target ->\n", e.target)
+        // console.log("This is e.target.id ->\n", e.target._id)
+        // console.log("This is e.target.innerText\n", e.target.innerText)
         // console.log("This tags._id\n", tags._id)
         // console.log("This is tags[0]._id\n", tags[0]._id)
         // if (e.target.id ===)
         // this works but need to use id istead of inner text
-        addTag(user, setupId, e.target.innerText)
-        // addTag(user, setupId, e.target._id)
+        // addTag(user, setupId, e.target.innerText)
+        addTag(user, setupId, tId)
             .then(()=> {
                 triggerRefresh()
             })
@@ -57,10 +58,10 @@ const IndexTags = (props) => {
     if (tags.length > 0) {
         tagButtons = tags.map((tag) => (
             <div  className="m-2">
-                <Button id={tag._id} onClick={addATag}>
+                <Button id={tag._id} onClick={()=>{addATag(tag._id)}}>
                 {/* // this works but need to use id istead of inner text */}
-                       <div key={tag._id}> {tag._id}</div>
-                       {/* <div key="{tag}"> {tag.text}</div> */}
+                       {/* <div key={tag._id}> {tag._id}</div> */}
+                       <div key={tag._id}> {tag.text}</div>
                 </Button>
             </div>
         ))
