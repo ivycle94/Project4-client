@@ -10,9 +10,9 @@ export const getAllTags = (user) => {
 
 // add patch
 export const addTag = (user, setupId, tagId) => {
-    console.log('user', user)
-    console.log('this is setupId', setupId)
-    console.log("this is tagId", tagId)
+    // console.log('user', user)
+    // console.log('this is setupId', setupId)
+    // console.log("this is tagId", tagId)
     return axios({
         url: `${apiUrl}/tags/${setupId}/${tagId}`,
         method: 'PATCH',
@@ -25,12 +25,14 @@ export const addTag = (user, setupId, tagId) => {
 
 // DELETE -> remove function
 export const removeTag = (user, setupId, tagId) => {
-    // console.log('user', user)
-    // return axios({
-    //     url: `${apiUrl}/tags/${setupId}/${tagId}`,
-    //     method: 'DELETE',
-    //     headers: {
-    //         Authorization: `Token token=${user.token}`
-    //     }
-    // })
+    console.log('user', user)
+     console.log('this is setupId', setupId)
+    console.log("this is tagId", tagId)
+    return axios({
+        url: `${apiUrl}/tags/${setupId}/${tagId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
 }
