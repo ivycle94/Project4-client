@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { getOneSetup, updateSetup, removeSetup } from '../../api/setup'
 import { removeComment } from '../../api/comment'
+import { removeTag } from '../../api/tag'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Spinner, Container, Card, Button } from 'react-bootstrap'
 import EditSetupModal from './EditSetupModal'
@@ -19,7 +20,7 @@ const ShowSetup = (props) => {
     const [comments, setComments] = useState([])
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
-    const { user, msgAlert } = props
+    const { user, msgAlert, triggerRefresh } = props
     const { id } = useParams()
     const navigate = useNavigate()
     // console.log('id in showSetup', id)
@@ -115,10 +116,23 @@ const removeTheComment = (comment) => {
 let tagsArray
 if (setup.tags.length > 0) {
     tagsArray = setup.tags.map((tag) => (
-        <p>{tag.text}</p>
+        <div className="tagShow">
+            {tag.text}
+            {/* <button onClick={() => removeTheTag()}>
+                x
+            </button> */}
+        </div>
     ))
 }
-    console.log("PLEASE FIND MY TAGS\n", setup.tags)
+// --- DELETE TAG FUNCTION? -----------------------------//
+// const removeTheTag = (tag) => {
+//     removeTag(user, setup._id, tag)
+//         .then(()=>{
+//             console.log("this is the setup with the tag", setup)
+//         })
+//         .catch(console.error)
+// }
+    // console.log("PLEASE FIND MY TAGS\n", setup.tags)
     return (
         <>
             <Container className="fluid mt-5">

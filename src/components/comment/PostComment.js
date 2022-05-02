@@ -40,27 +40,27 @@ const PostComment = (props) => {
 
         // console.log("res.data.setup._id ==>",res.data.setup._id)
         postComment(user, setup, comment)
-        .then((res) => {
-            // console.log("PostComment -> this is res\n", res)
-            // console.log("PostComment -> this is setup\n", setup)
-        })
-        .then(res => { navigate(`/setups/${setup._id}`) })
-        // .then(res => { navigate(`/setups`) })
-            // then we send a success message
-            .then(() =>
-                msgAlert({
-                    heading: 'Your comment has been added!',
-                    message: "",
-                    variant: 'success',
-                }))
-            .then(() => triggerRefresh())
-            // if there is an error, we'll send an error message
-            .catch(() =>
-                msgAlert({
-                    heading: 'Failed to add your comment!',
-                    message: "",
-                    variant: 'danger',
-                }))
+            .then((res) => {
+                // console.log("PostComment -> this is res\n", res)
+                // console.log("PostComment -> this is setup\n", setup)
+            })
+            .then(res => { navigate(`/setups/${setup._id}`) })
+            // .then(res => { navigate(`/setups`) })
+                // then we send a success message
+                .then(() =>
+                    msgAlert({
+                        heading: 'Your comment has been added!',
+                        message: "",
+                        variant: 'success',
+                    }))
+                .then(() => triggerRefresh())
+                // if there is an error, we'll send an error message
+                .catch(() =>
+                    msgAlert({
+                        heading: 'Failed to add your comment!',
+                        message: "",
+                        variant: 'danger',
+                    }))
         // console.log('PostComment -> The created comment -> ', comment)
 
     }
