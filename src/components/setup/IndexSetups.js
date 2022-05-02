@@ -7,7 +7,8 @@ import { indexSetupsSuccess, indexSetupsFailure } from '../shared/AutoDismissAle
 const cardContainerLayout = {
     display: 'flex',
     justifyContent: 'center',
-    flexFlow: 'row wrap'
+    flexFlow: 'row wrap',
+    alignItems: 'center'
 }
 
 const IndexSetups = (props) => {
@@ -50,14 +51,14 @@ const IndexSetups = (props) => {
 
     if (setups.length > 0) {
         setupCards = setups.map(setup => (
-            <Card key={setup._id} style={{ width: '30%' }} className="m-2">
-                {/* <Card.Header className='header-name'>{setup.name}</Card.Header> */}
+            <Card key={setup._id} style={{ width: '60%' }} className="m-2">
+                <Card.Header className='header-name'>{setup.title}</Card.Header>
                 <Card.Body className="card-body d-flex flex-column justify-content-end">
 
+                        {/* <p className="header-name">{setup.title}</p> */}
                         <img src={setup.img} alt="setup"/>
 
                     <Card.Text className="card-text">
-                        <p className="header-name">{setup.title}</p>
                         <Link to={`/setups/${setup._id}`}> 
                             View
                         </Link>

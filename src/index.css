@@ -21,7 +21,7 @@ code {
 }
 
 img {
-  width:200px;
+  width:60%;
 }
 
 /* NAVIGATION BAR styling */
@@ -30,7 +30,7 @@ img {
 }
 
 .navLinks {
-  margin: 0 5px 0 5px;
+  margin: 0 5px 0 15px;
 }
 
 .userName {
@@ -45,6 +45,19 @@ img {
   margin: 0px 5px 0px 10px;
 }
 
+.userIcon {
+  height: 15px;
+  width: 15px;
+  margin: 5px 10px 0px 0px;
+  margin-bottom: 10px;
+}
+
 .test {
   background-color: red;
+}
+
+
+.tagShow {
+  margin: 5px;
+  /* background-color: red; */
 }

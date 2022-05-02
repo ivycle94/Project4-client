@@ -12,7 +12,7 @@ const authenticatedOptions = (
 	<>
 		<Nav.Item>
 			<Link className='navLinks' to='addSetup' style={linkStyle}>
-				Add Setup
+				+Setup
 			</Link>
 		</Nav.Item>
 		<Nav.Item>
@@ -69,7 +69,10 @@ const Header = ({ user }) => (
 		<Navbar.Collapse id='basic-navbar-nav'>
 			<Nav className='ml-auto'>
 				{user && (
-					<span className='userName'> Welcome, {user.email} </span>
+					<div>
+						<span className='userName'> Welcome, {user.email} </span>
+						<img className="userIcon" src="https://i.imgur.com/XxxFdWw.png"/>
+					</div>
 				)}
 				{alwaysOptions}
 				{user ? authenticatedOptions : unauthenticatedOptions}

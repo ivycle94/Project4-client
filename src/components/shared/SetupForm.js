@@ -49,14 +49,14 @@ const SetupForm = (props) => {
                     name='tags'
                     onChange={handleChange}
                 /> */}
-                <IndexTags
+                {/* <IndexTags
                     id={tags._id}  
                     // key={tags.id} 
                     tags={tags} 
                     setup={setup}
                     user={user} 
                     // msgAlert={msgAlert}
-                />
+                /> */}
                 <Button className="show-buttons" type='submit'>Submit</Button>
                 {/* <a href=""><Button className="show-buttons" variant='dark'>Back</Button></a> */}
             </Form>
