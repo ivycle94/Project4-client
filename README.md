@@ -1,6 +1,7 @@
 # Bastion
 A one stop app where gamers or battle station enthusiasts can showcase their setup or get inspiration and help for their own setup.
 
+https://go-bastion.herokuapp.com/
 
 # User Story:
 **As a Public User:**
